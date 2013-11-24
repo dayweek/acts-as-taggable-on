@@ -376,7 +376,7 @@ module ActsAsTaggableOn::Taggable
           end
 
           # Create new taggings:
-          new_tags.each do |tag|
+          new_tags.uniq(&:id).each do |tag|
             taggings.create!(:tag_id => tag.id, :context => context.to_s, :taggable => self)
           end
         end
